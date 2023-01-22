@@ -1,8 +1,13 @@
 const db = require("../database/db.js");
 
 // Challenge 1
+// const select_products = db.prepare(/*sql*/ `
+//     SELECT id, name, quantity_per_unit, unit_price, units_in_stock, units_on_order FROM products
+// `);
+
+// Challenge 5
 const select_products = db.prepare(/*sql*/ `
-    SELECT id, name, quantity_per_unit, unit_price, units_in_stock, units_on_order FROM products
+    SELECT id, name, quantity_per_unit, unit_price, units_in_stock, units_on_order, unit_price * units_in_stock AS stock_value FROM products
 `);
 
 function listProducts() {
