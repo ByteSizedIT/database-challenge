@@ -8,4 +8,11 @@ function listProducts() {
   return select_products.all();
 }
 
-module.exports = { listProducts };
+const search_products = db.prepare(/*sql*/ `
+ SELECT id, name FROM products WHERE name LIKE ?`);
+
+function searchProducts(str) {
+  return search_products.all(`%${str}%`);
+}
+
+module.exports = { listProducts, searchProducts };
