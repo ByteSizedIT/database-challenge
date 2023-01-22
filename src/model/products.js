@@ -6,8 +6,13 @@ const db = require("../database/db.js");
 // `);
 
 // Challenge 5
+// const select_products = db.prepare(/*sql*/ `
+//     SELECT id, name, quantity_per_unit, unit_price, units_in_stock, units_on_order, unit_price * units_in_stock AS stock_value FROM products
+// `);
+
+// Challenge 6
 const select_products = db.prepare(/*sql*/ `
-    SELECT id, name, quantity_per_unit, unit_price, units_in_stock, units_on_order, unit_price * units_in_stock AS stock_value FROM products
+    SELECT id, name, quantity_per_unit, FORMAT('£%.2f', unit_price) AS unit_price, units_in_stock, units_on_order, FORMAT('£%.2f', unit_price * units_in_stock) AS stock_value FROM products
 `);
 
 function listProducts() {
